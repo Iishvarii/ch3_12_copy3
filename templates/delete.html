@@ -1,0 +1,53 @@
+{% extends "base.html" %}  <!-- 繼承基礎模板 -->
+{% block title %}
+    <title>學生資料管理系統 - 刪除學生資料</title>
+{% endblock %}
+{% block content %}
+<div class="head_content mb-4 text-center">
+    <h2 class="mb-2">刪除學生資料</h2>
+    <a href="{% url 'index' %}" class="btn btn-outline-pink btn-sm">← 回首頁</a>
+</div>
+<div class="card mx-auto" style="max-width: 600px;">
+    <div class="card-body p-4">
+        <div class="alert alert-danger text-center">確定要刪除下列這筆資料嗎？此動作無法復原！</div>
+        <form action="{% url 'delete' obj_data.cid %}" method="POST">
+            {% csrf_token %}
+            <table class="table table-borderless mb-4">
+                <tr>
+                    <th class="text-end pe-3" style="width: 30%;">姓名</th><td>{{ obj_data.cname }}</td>
+                </tr>
+                <tr>
+                    <th class="text-end pe-3">性別</th>
+                    <td>
+                        {% if obj_data.csex == "M"%}男{% endif %}
+                        {% if obj_data.csex == "F"%}女{% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="text-end pe-3">生日</th><td>{{ obj_data.cbirthday | date:'Y-m-d' }}</td>
+                </tr>
+                <tr>
+                    <th class="text-end pe-3">信箱</th><td>{{ obj_data.cemail }}</td>
+                </tr>
+                <tr>
+                    <th class="text-end pe-3">電話</th><td>{{ obj_data.cphone }}</td>
+                </tr>
+                <tr>
+                    <th class="text-end pe-3">地址</th><td>{{ obj_data.caddr }}</td>
+                </tr>
+            </table>
+            <div class="text-center">
+                <input type="submit" name="button" id="button" value="確定刪除" class="btn btn-danger px-4" onclick="return doubleCheck();">
+                <a href="{% url 'index' %}" class="btn btn-outline-secondary px-4">取消</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+// 透過javascript
+function doubleCheck() {
+    return confirm("確定要刪除這筆資料嗎？\n\n刪除後將無法復原！");
+}
+</script>
+{% endblock %}

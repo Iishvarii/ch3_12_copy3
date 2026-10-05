@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>學生資料管理系統 - 新增學生資料</title>
+{% endblock %}
+{% block content %}
+<div class="head_content mb-4 text-center">
+    <h2 class="mb-2">新增學生資料</h2>
+    <a href="{% url 'index' %}" class="btn btn-outline-pink btn-sm">← 回首頁</a>
+</div>
+<div class="card mx-auto" style="max-width: 600px;">
+    <div class="card-body p-4">
+        <form action="{% url 'post' %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="cname" class="form-label">*姓名</label>
+                <input type="text" class="form-control" id="cname" name="cname" required placeholder="請輸入姓名">
+            </div>
+            <div class="mb-3">
+                <label class="form-label d-block">*性別</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="csex_m" name="csex" value="M" checked>
+                    <label class="form-check-label" for="csex_m">男</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="csex_f" name="csex" value="F">
+                    <label class="form-check-label" for="csex_f">女</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="cbirthday" class="form-label">*生日</label>
+                <input type="date" class="form-control" id="cbirthday" name="cbirthday" required>
+            </div>
+            <div class="mb-3">
+                <label for="cemail" class="form-label">*信箱</label>
+                <input type="email" class="form-control" id="cemail" name="cemail" required placeholder="請輸入mail">
+            </div>
+            <div class="mb-3">
+                <label for="cphone" class="form-label">電話</label>
+                <input type="text" class="form-control" id="cphone" name="cphone">
+            </div>
+            <div class="mb-3">
+                <label for="caddr" class="form-label">地址</label>
+                <input type="text" class="form-control" id="caddr" name="caddr">
+            </div>
+            <div class="text-center mt-4">
+                <input type="submit" name="button" id="button" value="新增" class="btn btn-pink px-4">
+                <input type="reset" name="button2" id="button2" value="清除" class="btn btn-outline-secondary px-4">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
