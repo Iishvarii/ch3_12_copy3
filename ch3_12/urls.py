@@ -29,6 +29,7 @@ urlpatterns = [
     path('post/', views.post, name='post'),  # 新增學生資料
     path('edit/<int:id>/', views.edit, name='edit'),  # 編輯指定id的學生資料
     path('delete/<int:id>/', views.delete, name='delete'),  # 刪除指定id的學生資料
+    path('' , views.index, name='index'),
 
 #####################################################
     # web api
